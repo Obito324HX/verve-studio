@@ -7,7 +7,7 @@
 <meta property="og:title" content="Verve Studio: One Roof. Every Style.">
 <meta property="og:description" content="Barbershop and salon craft under one roof. Inclusive by design.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="verve-og.png">
+<meta property="og:image" content="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=1200&q=80">
 <title>Verve Studio: One Roof. Every Style.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,11 +49,13 @@
   .reveal.in-view{opacity:1;transform:translateY(0);}
 
   header{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);}
-  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;max-width:1180px;margin:0 auto;}
+  nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:22px 32px;max-width:1180px;margin:0 auto;}
   .wordmark{font-size:22px;letter-spacing:-0.3px;}
   .navlinks{display:flex;gap:30px;font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-family:'Archivo',sans-serif;}
   .navlinks a{opacity:0.7;}
   .navlinks a:hover{opacity:1;}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .menu-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink);line-height:1;padding:4px;}
 
   /* HERO */
   .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;}
@@ -151,7 +153,7 @@
   .t-head h2{font-size:15px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--crimson);margin-bottom:16px;}
   .t-head .big-line{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;font-size:32px;color:#fff;max-width:560px;}
   .t-track{display:flex;gap:24px;animation:t-scroll 40s linear infinite;width:max-content;}
-  .testimonials:hover .t-track{animation-play-state:paused;}
+  .t-track:hover{animation-play-state:paused;}
   @keyframes t-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   .t-card{background:#18181a;padding:32px 30px;width:380px;flex-shrink:0;border-top:2px solid var(--crimson);}
   .t-quote{font-size:15px;margin-bottom:22px;color:rgba(243,241,236,0.9);font-family:'Bodoni Moda',serif;font-style:italic;line-height:1.5;}
@@ -206,7 +208,14 @@
   .footer-bar a:hover{text-decoration:underline;}
 
   @media (max-width: 900px){
-    .navlinks{display:none;}
+    .navlinks{
+      display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      max-height:0;overflow:hidden;transition:max-height .25s ease;
+    }
+    .navlinks a{opacity:1;padding:16px 32px;border-top:1px solid var(--line);}
+    header.nav-open .navlinks{max-height:400px;}
+    .menu-toggle{display:block;}
     .side-label{display:none;}
     .hero-content{padding-left:32px;}
     .hero h1{font-size:44px;}
@@ -244,13 +253,16 @@
       <a href="#why">Why Us</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a href="#book" class="btn btn-primary magnetic">Book a Visit</a>
+    <div class="nav-right">
+      <a href="#book" class="btn btn-primary magnetic">Book a Visit</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
   </nav>
 </header>
 
 <section class="hero">
-  <img src="https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?w=1800&q=80" alt="Barber cutting a client's hair">
-  <div class="side-label">Barber &mdash; Salon &mdash; Studio</div>
+  <img src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=1800&q=80" alt="Barber cutting a client's hair">
+  <div class="side-label">Barber · Salon · Studio</div>
   <div class="hero-content">
     <div class="eyebrow">Barber &amp; Salon, One Roof</div>
     <h1>No more<br>picking <em>a side</em><br>of the door.</h1>
@@ -273,10 +285,10 @@
   <div class="statement-copy reveal">
     <h2>Under One Roof</h2>
     <p class="big-line">"We stopped asking people to pick a side of the door."</p>
-    <p class="support">Traditional barbering and salon styling have always shared the same craft: precision, care, and an eye for what actually suits the person in the chair. Verve was built on the idea that separating them by gender or convention never made sense in the first place. Every stylist here is trained across both disciplines &mdash; however you identify, whatever your hair needs, you're in the right place.</p>
+    <p class="support">Traditional barbering and salon styling have always shared the same craft: precision, care, and an eye for what actually suits the person in the chair. Verve was built on the idea that separating them by gender or convention never made sense in the first place. Every stylist here is trained across both disciplines: however you identify, whatever your hair needs, you're in the right place.</p>
   </div>
   <div class="statement-img reveal">
-    <img src="https://images.unsplash.com/photo-1758272133786-ee98adcc6837?w=900&q=80" alt="Diverse group of clients">
+    <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=900&q=80" alt="Regulars catching up at Verve">
   </div>
 </section>
 
@@ -287,7 +299,7 @@
   </div>
   <div class="services-layout">
     <div class="service-visual">
-      <img class="active" data-img="barber" src="https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?w=800&q=80" alt="Barber service preview">
+      <img class="active" data-img="barber" src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=800&q=80" alt="Barber service preview">
       <img data-img="salon" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80" alt="Salon service preview">
     </div>
     <div class="service-col">
@@ -454,6 +466,20 @@
 
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
+  // Mobile nav: hamburger toggle + auto-close on link tap
+  const menuToggle = document.getElementById('menuToggle');
+  const siteHeader = document.querySelector('header');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = siteHeader.classList.toggle('nav-open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.querySelectorAll('.navlinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      siteHeader.classList.remove('nav-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
   // Graceful fallback if an external Unsplash image fails to load
   function attachImgFallback(img){
     img.addEventListener('error', () => {
@@ -529,11 +555,11 @@
   // Gallery + lightbox
   const galleryPhotos = [
     { src: "https://images.unsplash.com/photo-1781450090585-1a511b7066d9?w=1400&q=80", caption: "The studio floor" },
-    { src: "https://images.unsplash.com/photo-1770253980732-dfed1cfdfa43?w=1400&q=80", caption: "Precision on the barber side" },
+    { src: "https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=1400&q=80", caption: "Precision on the barber side" },
     { src: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1400&q=80", caption: "Finishing touches on the salon side" },
     { src: "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1400&q=80", caption: "The salon team at work" },
     { src: "https://images.unsplash.com/photo-1673241073904-686d244b62e3?w=1400&q=80", caption: "Product shelf, salon side" },
-    { src: "https://images.unsplash.com/photo-1758272133786-ee98adcc6837?w=1400&q=80", caption: "Clients, every one of them welcome" }
+    { src: "https://images.unsplash.com/photo-1634480258143-ffb5e6df0029?w=1400&q=80", caption: "Clients, every one of them welcome" }
   ];
   const grid = document.getElementById('galleryGrid');
   galleryPhotos.forEach((photo, i) => {
